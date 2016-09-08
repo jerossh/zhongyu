@@ -1,0 +1,83 @@
+extends ../include/admin-header
+block content
+    .container
+      .row#slide-upload
+        .col-md-12
+          #panel-wrap
+            .panel
+              .panel-heading
+                span.panel-title 添加幻灯片
+              .panel-body
+                .chute-bin(style='min-height: 250px;')
+                  .filter-error-message.text-center
+                    span  获取错误，请联系管理员
+                  form.form-horizontal(method="post", action="/admin/newslide", enctype="multipart/form-data", role='form')
+                    if slide._id
+                      .form-group
+                        input.form-control(type='hidden', placeholder='请输入名称', name="slide[_id]", value=slide._id) 
+                    .form-group
+                      label.col-md-2.control-label(for='name') 名称：
+                      .col-md-10
+                        input#name.form-control(type='text', placeholder='请输入名称', name="slide[name]", value=slide.name)  
+                    .form-group
+                      label.col-md-2.control-label(for='sort') 排序：
+                      .col-md-10
+                        input#sort.form-control(type='tel', placeholder='请输入顺序', name="slide[sort]", value=slide.sort)  
+                    .form-group
+                      label.col-md-2.control-label(for='inputfile') 图片：
+                      .col-md-10
+                        if slide.img
+                          .col-md-3
+                            img.img-responsive(src=slide.img)
+                            input.hidden.form-control(type='hidden', name="slide[img]", value=slide.img) 
+                        else
+                          input#inputfile(type='file', name="uploadImg")
+                          p.help-block 图片格式为jpg格式，分辨率1920*500
+                    //- .form-group
+                    //-   .col-md-offset-2.col-md-10
+                    //-     .checkbox
+                    //-       label
+                    //-         input(type='checkbox')
+                    //-         |  确认，请打勾
+                    .form-actions
+                      .col-md-offset-2.col-md-10
+                        button.btn.green(type='submit') 
+                          span 添加
+                          span(style='display: none;') 正在添加...
+      .row#slide-manage.basic-gallery
+        .col-md-12
+          #panel-wrap
+            .panel
+              .panel-heading
+                span.panel-title 管理幻灯片
+              .panel-body
+                .chute-bin
+                  .filter-error-message.text-center
+                    span  获取图片错误，请检查服务器是否设置正确
+                  each item in slides  
+                    .col-md-4.col-sm-12(class="item-id-"+item._id)
+                      .mix.label1.folder1(style='display: inline-block;', data-bound='')
+                        .panel.p6.pbn
+                          .of-h
+                            img.img-responsive(src=item.img, alt='', title=item.name)
+                            .row.table-layout
+                              h6.text-center #{item.name}
+                        .form-actions.form-actions-center
+                          button.btn.btn-info.change(type='button', data-id='#{item._id}') 修改
+                          button.btn.btn-danger.del(type='button', data-id='#{item._id}') 删除
+
+  
+
+
+
+                
+                  
+                
+        
+
+            
+          
+      
+    
+    
+    

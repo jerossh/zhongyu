@@ -1,0 +1,41 @@
+extends ../include/admin-header
+block content
+    .container
+      .row#slide-manage.basic-gallery
+        .col-md-12
+          #panel-wrap
+            .panel
+              .panel-heading
+                span.panel-title 管理图片
+              .panel-body
+                .chute-bin
+                  .filter-error-message.text-center
+                    span  获取图片错误，请检查服务器是否设置正确
+                  each item in images  
+                    - var filename = item.split('.')[0]
+                    .col-md-4.col-sm-12(class="item-id-"+filename)
+                      .mix.label1.folder1(style='display: inline-block;', data-bound='')
+                        .panel.p6.pbn
+                          .of-h
+                            img.img-responsive(src="/upload/"+ item, alt='')
+                            .row.table-layout
+                              h6.text-center #{item.name}
+                        .form-actions.form-actions-center
+                          //- button.btn.btn-info.change(type='button', data-id=item) 修改
+                          button.btn.btn-danger.del(type='button', data-id=item) 删除
+
+  
+
+
+
+                
+                  
+                
+        
+
+            
+          
+      
+    
+    
+    

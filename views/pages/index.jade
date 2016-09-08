@@ -1,0 +1,136 @@
+extends ../layout
+block content
+  .home
+    include ../include/left-menu
+    #myCarousel.carousel.slide
+      // 轮播（Carousel）指标
+      ol.carousel-indicators
+        li.active(data-target='#myCarousel', data-slide-to='0')
+        li(data-target='#myCarousel', data-slide-to='1')
+        li(data-target='#myCarousel', data-slide-to='2')
+      // 轮播（Carousel）项目
+      .carousel-inner
+        each slide in slides
+          .item
+            img(src=slide.img, alt='First slide')
+      // 轮播（Carousel）导航
+      a.carousel-control.left(href='#myCarousel', data-slide='prev') ‹
+      a.carousel-control.right(href='#myCarousel', data-slide='next') ›
+  
+  section.main-content#news
+    .container
+      .row
+        .col-md-12.text-center.section-intro
+            h2.header-boxed.wow.zoomIn.animated(style='visibility: visible; animation-iteration-count: 1; animation-name: zoomIn;', data-wow-iteration='1')
+              span 新闻资讯
+            p.lead.wow.fadeInUp.animated(style='visibility: visible; animation-delay: 600ms; animation-name: fadeInUp;', data-wow-delay='600ms')  
+              | 中誉公司，嘉兴年轻活力的咖普集团下财务公司，秉承古老的契约精神，为您服务
+        for blog in blogs
+          .blog-content-1
+            .col-xs-12.col-sm-6.col-md-6.col-lg-4.col-xl-3
+              .blog-post-sm.bordered.blog-container
+                .blog-img-thumb
+                  a(href='javascript:;')
+                    img(src=blog.img)
+                .blog-post-content
+                  h2.blog-title.blog-post-title
+                    a(href='javascript:;') #{blog.title}
+                  p.blog-post-desc  #{blog.intro}
+                  .blog-post-foot
+                    .blog-post-meta
+                      i.icon-calendar.font-blue
+                      |  #{moment(blog.meta.createdAt).format('MM/DD/YY')}
+
+
+                    
+          
+    
+  section.main-content#Business
+    .container
+      .row
+        .col-md-12.text-center.section-intro
+            h2.header-boxed.wow.zoomIn.animated(style='visibility: visible; animation-iteration-count: 1; animation-name: zoomIn;', data-wow-iteration='1')
+              span 服务项目
+            p.lead.wow.fadeInUp.animated(style='visibility: visible; animation-delay: 600ms; animation-name: fadeInUp;', data-wow-delay='600ms')  
+              | 中誉公司，嘉兴年轻活力的咖普集团下财务公司，秉承古老的契约精神，为您服务
+        .col-md-12.highlight-boxes
+          .col-md-4.wow.fadeInLeft.animated(style='visibility: visible; animation-delay: 500ms; animation-name: fadeInLeft;', data-wow-delay='500ms')
+            .featured-content-box.text-center
+              i.tn-register.fa.fa-building-o
+              h3 公司注册
+              p 累计注册资金超过100亿
+              button.btn.btn-warning 了解更多 
+          .col-md-4.wow.zoomIn.animated(style='visibility: visible; animation-delay: 100ms; animation-name: zoomIn;', data-wow-delay='100ms')
+            .featured-content-box.text-center
+              i.tn-charge.fa.fa-money
+              h3 代理记账 
+              p 5年行业经验，1000家客户见证
+              button.btn.btn-info 了解更多 
+          .col-md-4.wow.fadeInRight.animated(style='visibility: visible; animation-delay: 500ms; animation-name: fadeInRight;', data-wow-delay='500ms')
+            .featured-content-box.text-center
+              i.tn-buy.fa.fa-balance-scale
+              h3 公司买卖
+              p 公司转让/注销，第三方担保确保安全
+              button.btn.btn-primary 了解更多
+          .col-md-4.wow.fadeInRight.animated(style='visibility: visible; animation-delay: 500ms; animation-name: fadeInRight;', data-wow-delay='500ms')
+            .featured-content-box.text-center
+              i.tn-buy.fa.fa-sticky-note-o
+              h3 代开增值税专用发票
+              p 公司转让/注销，第三方担保确保安全
+              button.btn.btn-danger 了解更多
+          .col-md-4.wow.fadeInRight.animated(style='visibility: visible; animation-delay: 500ms; animation-name: fadeInRight;', data-wow-delay='500ms')
+            .featured-content-box.text-center
+              i.tn-buy.fa.fa-exchange
+              h3 进出口退税代理记账
+              p 公司转让/注销，第三方担保确保安全
+              button.btn.btn-warning 了解更多
+          .col-md-4.wow.fadeInRight.animated(style='visibility: visible; animation-delay: 500ms; animation-name: fadeInRight;', data-wow-delay='500ms')
+            .featured-content-box.text-center
+              i.tn-buy.fa.fa-registered
+              h3 国内商标注册
+              p 公司转让/注销，第三方担保确保安全
+              button.btn.btn-info 了解更多
+  section.main-content#client-reviews
+    .container
+      .row
+        .col-md-12.text-center.section-intro
+            h2.header-boxed.wow.zoomIn.animated(style='visibility: visible; animation-iteration-count: 1; animation-name: zoomIn;', data-wow-iteration='1')
+              span 用户评价
+            p.lead.wow.fadeInUp.animated(style='visibility: visible; animation-delay: 600ms; animation-name: fadeInUp;', data-wow-delay='600ms')  
+              | 我们强大的服务与便捷的沟通方式，为客户解决公司和财务上的问题
+        .col-md-12.highlight-boxes
+        .col-md-4
+          .speach
+            | 四大的业务、尤其是并购、咨询、税务架构方面的实力，目前还是境内的事务所无法比肩的。海外上市业务的市场也看好。
+            .media.person
+              .pull-left
+                img.img-circle(src='images/user.jpg')
+              .media-body
+                b 李先生
+                br
+                |  公司总裁
+        .col-md-4
+          .speach
+            | 四大的业务、尤其是并购、咨询、税务架构方面的实力，目前还是境内的事务所无法比肩的。海外上市业务的市场也看好。
+            .media.person
+              .pull-left
+                img.img-circle(src='images/user.jpg')
+              .media-body
+                b 张经理
+                br
+                |  公司总经理
+        .col-md-4
+          .speach
+            | 四大的业务、尤其是并购、咨询、税务架构方面的实力，目前还是境内的事务所无法比肩的。海外上市业务的市场也看好。
+            .media.person
+              .pull-left
+                img.img-circle(src='images/user.jpg')
+              .media-body
+                b 黄总
+                br
+                |  公司总裁
+  
+  
+  
+
+                      

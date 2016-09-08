@@ -1,0 +1,94 @@
+extends ../layout
+block content
+  .page-header
+    .container
+      h1  #{blog.title}
+        small 联系我们，让我们更好的为您服务
+  .blog
+    .container
+      .blog-top.single-top
+        .col-md-9.blog-left
+          .blog-main
+            p.bg #{blog.title}
+            p
+              | 由 
+              a(href='#') Admin
+              |  在 #{moment(blog.meta.creatAt).format('YYYY-MM-DD')} 发布
+          .blog-main-one
+            .blog-one
+              .blog-one-left
+                img(src=blog.img, alt='')
+              p #{blog.article}
+            .blog-comments
+              ul
+                li
+                  span.glyphicon.glyphicon-bookmark(aria-hidden='true')
+                  a(href='#') #{blog.category.name}
+                li
+                  span.glyphicon.glyphicon-calendar(aria-hidden='true')
+                  p #{moment(blog.meta.creatAt).format('YYYY-MM-DD')}
+                li
+                  span.glyphicon.glyphicon-user(aria-hidden='true')
+                  a(href='#') Admin
+              .clearfix
+          
+        //-   .related.heading
+        //-     h3 Related Posts
+        //-     .related-bottom
+        //-       .col-md-3.related-left
+        //-         a(href='single.html')
+        //-           img(src='/images/b1.jpg', alt='')
+        //-         h4 Cum sociis sere
+        //-       .col-md-3.related-left
+        //-         a(href='single.html')
+        //-           img(src='/images/b2.jpg', alt='')
+        //-         h4 Vestibulum est ex
+        //-       .col-md-3.related-left
+        //-         a(href='single.html')
+        //-           img(src='/images/b3.jpg', alt='')
+        //-         h4 Ut tincidunt
+        //-       .col-md-3.related-left
+        //-         a(href='single.html')
+        //-           img(src='/images/b4.jpg', alt='')
+        //-         h4  Aliquam eu quam
+        //-   .clearfix
+        .col-md-3.blog-right
+          .categories
+            h2 Categories
+            ul
+              li
+                a(href='#') Aenean tortor orci
+              li
+                a(href='#') Duis bibendum pellentesquev
+              li
+                a(href='#') Quisque pharetra semper
+              li
+                a(href='#') Cras condimentum risus
+              li
+                a(href='#')  Quisque id erat sapien
+          //- .categories
+          //-   h3 Recent Posts
+          //-   ul
+          //-     li
+          //-       a(href='#') Fusce id volutpat est
+          //-     li
+          //-       a(href='#') Phasellus condimentum odio
+          //-     li
+          //-       a(href='#') Donec interdum eros elit
+          //-     li
+          //-       a(href='#') Cras condimentum risus
+          //-     li
+          //-       a(href='#') Proin sodales diam ac 
+          //- .categories
+          //-   h3 Archives
+          //-   ul
+          //-     li
+          //-       a(href='#') March 3014
+          //-     li
+          //-       a(href='#') May 2014
+          //-     li
+          //-       a(href='#') August 2014
+          //-     li
+          //-       a(href='#') October 2014
+        .clearfix
+                      

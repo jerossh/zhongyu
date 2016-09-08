@@ -1,0 +1,62 @@
+doctype
+html
+  head
+    include ./admin-head
+    title #{title}
+  body.sb-top.sb-top-lg
+    #sidebar_left
+      .sidebar-left-content.nano-content
+        ul.nav.sidebar-menu
+          li
+            a.accordion-toggle(href='/admin')
+              span.sb-menu-icon.fa.fa-dashboard
+              span.sidebar-title 概览
+            ul.nav.sub-nav
+              li
+                a(href='/admin')
+                  | 关键词分布
+              li
+                a(href='/', target="_blank")
+                  | 查看站点
+              //- li
+              //-   a(href='/admin/images', target="_blank")
+              //-     | 管理图片
+          li
+            a.accordion-toggle(href='/admin/slide')
+              span.sb-menu-icon.fa.fa-picture-o
+              span.sidebar-title 多媒体
+            ul.nav.sub-nav
+              li
+                a(href='/admin/slide')
+                  | 管理幻灯片
+              li
+                a(href='/admin/images')
+                  | 管理图片
+
+          li
+            a.accordion-toggle(href='/admin/blog')
+              span.sb-menu-icon.fa.fa-desktop
+              span.sidebar-title 新闻资讯
+            ul.nav.sub-nav
+              li
+                a.accordion-toggle(href='/admin/blog')
+                  | 管理新闻
+              li
+                a(href='/admin/category')
+                  | 管理分类
+          li
+            a.accordion-toggle(href='/admin/clienlist')
+              span.sb-menu-icon.fa.fa-cogs
+              span.sidebar-title 用户管理
+            ul.nav.sub-nav
+              li
+                a.accordion-toggle(href='/admin/clienlist')
+                  | 公司核名
+              li
+                a.accordion-toggle(href='/admin/rsslist')
+                  | 用户订阅     
+              li
+                a.accordion-toggle(href='/logout')
+                  | 退出账号
+    
+    block content

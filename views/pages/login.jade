@@ -1,0 +1,40 @@
+doctype
+html
+  head
+    include ../include/admin-head
+    title #{title}
+  body.login
+    .logo
+      a(href="/")
+        img(src="/images/logo-longin.png")
+    .content 
+      form.login-form(action='/login', method="post", novalidate="novalidate" ,enctype="multipart/form-data")
+        h3.form-title 管理员登录
+        .alert.alert-danger(style="display:none;")
+          button.close(data-dismiss="alert")
+            | &times;
+          span 请输入用户名和密码
+        .form-group
+          label.control-label.visible-ie8.visible-ie9 用户名
+          input.form-control.form-control-solid.placeholder-no-fix(type="text" autocomplete="off" placeholder="用户名" name="user[name]" aria-required="true" aria-describedby="username-error" )    
+        .form-group
+          label.control-label.visible-ie8.visible-ie9 密码
+          input.form-control.form-control-solid.placeholder-no-fix(type="text" autocomplete="off" placeholder="密码" name="user[password]" aria-required="true" aria-describedby="password-error" )
+        .form-actions
+          button.btn.green.uppercase(type='submit') 登录
+          label.rememberme.check.mt-checkbox.mt-checkbox-outline
+            input(type='checkbox', name='remember', value='1')
+            | 记住密码
+            span
+          a#forget-password.forget-password(href='javascript:;') 忘记密码?
+        .create-account
+          p
+            a#register-btn.uppercase(href='javascript:;') 创建账户
+
+                        
+          
+        
+        
+        
+      
+    

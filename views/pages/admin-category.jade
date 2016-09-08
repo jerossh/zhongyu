@@ -1,0 +1,56 @@
+extends ../include/admin-header
+block content
+  .container
+    .row
+      .col-md-12
+        #panel-wrap
+          .panel
+            .panel-heading
+              span.panel-title 分类添加
+            .panel-body
+              .chute-bin
+                .filter-error-message.text-center
+                  span  获取图片错误，请检查服务器是否设置正确
+                .portlet-body.form
+                  form.form-horizontal(method="post", action="/admin/category")
+                    if category
+                      input(type="hidden", name="category[id]", value="#{category._id}")
+                    .form-group
+                      label.col-md-2.control-label(for="inputCategory")  新闻分类
+                      .col-md-10
+                        input#inputCategory.form-control(type="text", name="category[name]", value=category.name)
+                    .form-group
+                      label.col-md-2.control-label(for="inputCategoryIntro") 分类简介
+                      .col-md-10
+                        input#inputCategoryIntro.form-control(type="text", name="category[intro]", value=category.intro)
+                    .form-group
+                      .col-md-offset-2.col-md-10
+                        button.btn.btn-primary(type="submit") 录入
+    .row
+      .col-md-12
+        #panel-wrap
+          .panel
+            .panel-heading
+              span.panel-title 分类管理
+            .panel-body
+              .chute-bin
+                .filter-error-message.text-center
+                  span  获取图片错误，请检查服务器是否设置正确
+                .portlet-body.form
+                  table.table.table-hover.table-bordered
+                    thead
+                      tr
+                        th 分类 
+                        th 描述
+                        th 创建时间
+                        th 操作
+                    tbody
+                      if categories
+                        each item in categories
+                          tr(class="item-id-#{item._id}")
+                            td #{item.name}
+                            td #{item.intro}
+                            td #{moment(item.meta.creatAt).format('MM/DD/YY')}
+                            td
+                              button.btn.btn-info.change(type="button", data-id="#{item._id}") 修改
+                              button.btn.btn-danger.del(type="button", data-id="#{item._id}") 删除

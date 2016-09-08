@@ -1,0 +1,64 @@
+extends ../layout
+block content
+  .page-header
+    .container
+      h1
+        | #{title}
+        small 联系我们，让我们更好的为您服务
+  section#curious.curious.main-content
+      .container
+        .row
+          .col-md-12.text-center.section-intro
+            h2.header-boxed.wow.zoomIn.animated(style='visibility: visible; animation-iteration-count: 1; animation-name: zoomIn;', data-wow-iteration='1')
+              span 有任何疑问？
+            p.lead 如果您有任何业务上或者流程上的疑问，马上给我们留言：
+          .col-md-6
+            .contact-form.wow.fadeInLeft.animated(style='visibility: visible; animation-name: fadeInLeft;')
+              form.row.form1(method='POST', action="/admin/client")
+                .col-md-6
+                  .form-group
+                    label
+                      | 怎么称呼
+                      i.fa.fa-asterisk
+                    input.form-control(name='client[name]', type='text')
+                .col-md-6
+                  .form-group
+                    label
+                      | 您的电话
+                      i.fa.fa-asterisk
+                    input.form-control(name='client[tel]', type='tel')
+                .col-md-12
+                  .form-group
+                    label 有什么疑问呢，在这里写下来
+                    textarea.form-control(name='client[query]', rows='6')
+                  .send_result
+                .col-md-12
+                  input.btn.btn-primary.btn-lg.btn-block(value='提交', name='submit', type='submit')
+          .col-md-3
+            .featured-content-box.text-center.wow.fadeInDown.animated(style='visibility: visible; animation-name: fadeInDown;')
+              .circle.feature-icon
+                i.fa.fa-mobile
+              h3 电话
+              p +86-12345-5678
+            .featured-content-box.text-center.wow.fadeInUp.animated(style='visibility: visible; animation-name: fadeInUp;')
+              .circle.feature-icon
+                i.fa.fa-envelope-o
+              h3 邮箱 
+              p contact@163.com
+          .col-md-3
+            .panel.panel-default.panel-subscribe.panel-subscribe-narrow.panel-subscribe-light.panel-subscribe-vert.wow.fadeInRight.animated(style='visibility: visible; animation-name: fadeInRight;')
+              .panel-body
+                .media.text-center
+                  img(src='images/email2.png')
+                  .media-body
+                    h3 订阅我们的服务
+                    | 订阅我们最新的服务，如果有推出最新的业务与最新活动，我们可以第一时间通知您
+              .panel-footer
+                form(method="post", action="/admin/rss")
+                  .form-group
+                    input#fname1.form-control(placeholder='姓名', type='text', name="rss[name]")
+                  .input-group
+                    input.form-control(placeholder='邮箱', type='email', name="rss[mail]")
+                    span.input-group-btn
+                      button.btn.btn-inverse.btn-block(type='submit') 订阅
+                      

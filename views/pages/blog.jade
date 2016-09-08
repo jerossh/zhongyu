@@ -1,0 +1,94 @@
+extends ../layout
+block content
+  .page-header
+    .container
+      h1
+        | #{title}
+        small 新闻资讯，让你掌握第一手行业资讯
+  .blog
+  .container
+    .blog-top
+      .col-md-9.blog-left
+        each item in blogs
+          .blog-main
+            a.bg(href='/blog/article?id=#{item._id}') #{item.title}
+            p
+              | 由 
+              a(href='#') Admin
+              |  在 #{moment(item.meta.creatAt).format('YYYY-MM-DD')} 发布
+              //- a(href='#') 5 comments
+          .blog-main-one
+            .blog-one
+              .col-md-5.blog-one-left
+                a(href='/blog/article')
+                  img.img-responsive(src=item.img, alt='')
+              .col-md-7.blog-one-left
+                p #{item.article}
+                .b-btn
+                  a(href='/blog/article?id=#{item._id}') 了解详情
+              .clearfix
+            .blog-comments
+              ul
+                li
+                  span.glyphicon.glyphicon-bookmark(aria-hidden='true')
+                  a(href='#') #{item.category.name}
+                li
+                  span.glyphicon.glyphicon-calendar(aria-hidden='true')
+                  p #{moment(item.meta.creatAt).format('YYYY-MM-DD')}
+                li
+                  span.glyphicon.glyphicon-user(aria-hidden='true')
+                  a(href='#') Admin
+              .clearfix
+  
+      .col-md-3.blog-right
+        .categories
+          h2 Categories
+          ul
+            li
+              a(href='#') Aenean tortor orci
+            li
+              a(href='#') Duis bibendum pellentesquev
+            li
+              a(href='#') Quisque pharetra semper
+            li
+              a(href='#') Cras condimentum risus
+            li
+              a(href='#')  Quisque id erat sapien
+        //- .categories
+        //-   h3 Recent Posts
+        //-   ul
+        //-     li
+        //-       a(href='#') Fusce id volutpat est
+        //- 
+        //- .categories
+        //-   h3 Archives
+        //-   ul
+        //-     li
+        //-       a(href='#') March 3014
+        //-     li
+        //-       a(href='#') May 2014
+        //-     li
+        //-       a(href='#') August 2014
+        //-     li
+        //-       a(href='#') October 2014
+      .clearfix
+    nav
+
+      ul.pagination
+        //- li
+        //-   a(href='#', aria-label='Previous')
+        //-     span(aria-hidden='true') «
+        - for (var i = 0; i < totalPage; i++) {
+           - if (currentPage == (i + 1)) {
+               li.active
+                 span #{currentPage}
+           - }
+           - else {
+               li
+                 a(href='/blog?p=#{i}') #{i + 1}
+           - }
+         - }
+        //- li
+        //-   a(href='#', aria-label='Next')
+        //-     span(aria-hidden='true') »
+                      
