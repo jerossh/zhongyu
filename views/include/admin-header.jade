@@ -45,6 +45,17 @@ html
                 a(href='/admin/category')
                   | 管理分类
           li
+            a.accordion-toggle(href='/admin/business')
+              span.sb-menu-icon.fa.fa-briefcase
+              span.sidebar-title 业务模块
+            ul.nav.sub-nav
+              li
+                a.accordion-toggle(href='/admin/business')
+                  | 管理业务
+              li
+                a(href='/admin/business_category')
+                  | 管理分类
+          li
             a.accordion-toggle(href='/admin/clienlist')
               span.sb-menu-icon.fa.fa-cogs
               span.sidebar-title 用户管理

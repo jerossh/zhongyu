@@ -19,7 +19,10 @@ html
           input.form-control.form-control-solid.placeholder-no-fix(type="text" autocomplete="off" placeholder="用户名" name="user[name]" aria-required="true" aria-describedby="username-error" )    
         .form-group
           label.control-label.visible-ie8.visible-ie9 密码
-          input.form-control.form-control-solid.placeholder-no-fix(type="text" autocomplete="off" placeholder="密码" name="user[password]" aria-required="true" aria-describedby="password-error" )
+          input.form-control.form-password-1(type="text" autocomplete="off" placeholder="密码")
+        .form-group
+          label.control-label.visible-ie8.visible-ie9 密码
+          input.form-control.form-password-2(type="hidden" autocomplete="off" placeholder="密码" name="user[password]" aria-required="true" aria-describedby="password-error" )
         .form-actions
           button.btn.green.uppercase(type='submit') 登录
           label.rememberme.check.mt-checkbox.mt-checkbox-outline

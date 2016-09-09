@@ -162,12 +162,14 @@ body.sb-top #sidebar_left .sidebar-menu > li {
     min-width: 107px;
     min-height: 100px;
 }
-
+/*body.sb-top.sb-top-lg #sidebar_left .sidebar-menu {
+  display: flex;
+}*/
 body.sb-top.sb-top-lg #sidebar_left .sidebar-menu > li > a {
     line-height: inherit;
     text-align: center;
     padding: 26px 0px 22px;
-    width: 250px;
+    /*width: 250px;*/
 }
 body.sb-top #sidebar_left .sidebar-menu > li > a > span.sb-menu-icon {
     font-size: 28px;

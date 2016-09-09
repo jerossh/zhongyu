@@ -1,0 +1,95 @@
+extends ../include/admin-header
+block content
+  .container
+    .row#news-add
+      .col-md-12
+        #panel-wrap
+          .panel
+            .panel-heading
+              span.panel-title 新闻添加
+            .panel-body
+              .chute-bin
+                .filter-error-message.text-center
+                  span  获取图片错误，请检查服务器是否设置正确
+                .portlet-body.form
+                  form.form-horizontal(action="/admin/blog", method="post", enctype="multipart/form-data", role='form')
+                    .form-body
+                      if blog._id
+                        input.form-control(type="hidden", name="blog[_id]", value=blog._id)
+                      .form-group 
+                        label.col-md-2.control-label(for="title") 文章标题
+                        .col-md-10
+                          input.form-control(type="text", placeholder="输入标题，10个字左右", name="blog[title]", value=blog.title)
+                      .form-group 
+                        label.col-md-2.control-label(for="article") 文章内容
+                        .col-md-10
+                          textarea.form-control(rows="10", placeholder="输入内容，300字左右",name="blog[article]") #{blog.article}
+                      .form-group 
+                        label.col-md-2.control-label(for="intro") 文章简介
+                        .col-md-10
+                          textarea.form-control(rows="2", placeholder="输入简介，30个字左右", name="blog[intro]") #{blog.intro}
+                    
+                      .form-group
+                        label.col-md-2.control-label(for="category") 文章分类
+                        .col-md-10
+                          if categories
+                            .mt-checkbox-inline
+                              each item in categories 
+                                -  if (blog.category)
+                                    - var t = item._id.toString()==blog.category.toString()
+                                label.mt-checkbox                        
+                                  input#inlineCheckbox21(type='checkbox', value='#{item._id}', name="blog[category]", checked=t)
+                                  |  #{item.name}
+                                  span
+                          else
+                            input.form-control(type="text", placeholder="输入分类，4个字左右", name="blog[categoryName]")
+                      .form-group
+                        label.col-md-2.control-label(for="blogImg") 文章图片
+                        .col-md-10
+                          input#blogfile(type="file", name="blogImg")
+                        if blog.img
+                          .col-md-offset-2.col-md-1
+                            img.img-responsive(src=blog.img, name="blog[img]")
+                      
+                    .form-actions
+                      .row
+                        .col-md-offset-2.col-md-10
+                          button.btn.green(type='submit') 提交
+                          button.btn.btn-danger(type='reset') 重置
+    .row.blog-content-1#manage
+      .col-md-12
+        #panel-wrap
+          .panel
+            .panel-heading
+              span.panel-title 管理新闻
+            .panel-body
+              .chute-bin
+                .filter-error-message.text-center
+                  span  获取图片错误，请检查服务器是否设置正确
+                .portlet-body.form
+                  table.table.table-hover.table-bordered
+                    thead
+                      tr
+                        td 标题
+                        td 分类
+                        td 缩略图
+                        td 时间
+                        td 操作
+
+                    tbody
+                      each item in blogs
+                        tr(class="item-id-"+item._id)
+                          td #{item.title}
+                          if item.category
+                            td #{item.category.name}
+                          else 
+                            td undefined
+                          td
+                            .kapu-thumbnail
+                              img.kapu-thumbnail(src=item.img width="50")
+                          td #{moment(item.meta.createdAt).format("MM/DD/YY")}
+                          td
+                            button.btn.btn-info.view_blog(data-id="#{item._id}")查看
+                            button.btn.btn-warning.change(data-id="#{item._id}") 修改                    
+                            button.btn.btn-danger.del(data-id="#{item._id}") 删除
+                

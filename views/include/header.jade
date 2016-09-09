@@ -1,3 +1,8 @@
+.alert.alert-warning(style="display:none;")
+  .container
+    button.close
+      | &times;
+    span 输入核名内容
 header.header
   .header-area
     .container
@@ -14,7 +19,7 @@ header.header
                 | 15024332991 
         .col-md-4
               .input-group
-                input.form-control.input-sm(placeholder="公司核名" type='text')
+                input.form-control.input-sm.heming_content(placeholder="公司核名" type='text')
                 span.input-group-btn#verify
                   a.btn.btn-default.btn-sm(type="button", href="#", data-toggle="modal", data-target="#signinModal"): i.fa.fa-search
 nav.menu
