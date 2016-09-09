@@ -1,6 +1,6 @@
 var User = require('../../models/user');
 var crypto = require('crypto');
-var decipher = crypto.createDecipher('aes192', 'kapu');
+var decipher = crypto.createDecipher('aes192', 'a password');
 
 exports.signUpPage = function(req, res) {
   res.render('signup', {title: '用户登录'})
