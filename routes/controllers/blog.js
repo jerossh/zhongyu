@@ -193,10 +193,14 @@ exports.blog = function(req, res) {
 exports.article = function(req, res) {
   var id = req.query.id
   var _blogs
+  var _blog
   var _categories
 
   Category.find({}, function(err, data) {
     _categories = data;
+  })
+  Blog.find().limit(3).exec(function(err, blogsData){
+    _blogs = blogsData
   })
 
   Blog.findOne({_id: id}).populate({
@@ -208,6 +212,7 @@ exports.article = function(req, res) {
       title: "新闻页面",
       blog: _blog,
       categories: _categories,
+      blogs: _blogs,
     })
   })
 }

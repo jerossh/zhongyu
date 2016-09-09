@@ -54,17 +54,18 @@ block content
         //-   .clearfix
         .col-md-3.blog-right
           .categories
-            h2 Categories
+            h2 分类
             ul
               each item in categories
                 li
                   a(href='#') #{item.name}
-
-          //- .categories
-          //-   h3 Recent Posts
-          //-   ul
-          //-     li
-          //-       a(href='#') Fusce id volutpat est
+          .space
+          .categories
+            h2 最新新闻
+            ul
+              each item in blogs
+                li
+                  a(href='#') #{item.title}
           //-     li
           //-       a(href='#') Phasellus condimentum odio
           //-     li
