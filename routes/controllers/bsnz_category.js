@@ -40,14 +40,14 @@ exports.saveCategory = function(req, res) {
       _category = _.assignIn(category, categoryObj)
       _category.save(function(err) {
         if (err) console.log(err);
-        res.redirect('/admin/category')
+        res.redirect('/admin/bsnz_category')
       })
     })
   } else {
     _category = new Bsnz_category(categoryObj)
     _category.save(function(err) {
       if (err) console.error(err);
-      res.redirect('/admin/category')
+      res.redirect('/admin/bsnz_category')
     })
   }
 }

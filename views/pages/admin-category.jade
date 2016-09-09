@@ -13,7 +13,7 @@ block content
                   span  获取图片错误，请检查服务器是否设置正确
                 .portlet-body.form
                   form.form-horizontal(method="post", action="/admin/category")
-                    if category
+                    if category._id
                       input(type="hidden", name="category[id]", value="#{category._id}")
                     .form-group
                       label.col-md-2.control-label(for="inputCategory")  新闻分类
