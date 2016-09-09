@@ -22,7 +22,6 @@
     // keyup keycode输出都是大写，charcode都是0
     inputPass.keypress(function(e){
       var charCode = e.charCode;
-      console.log(charCode);
       e.preventDefault();
       if(charCode >= 48 && charCode <= 122){
         inputPass.val(inputPass.val() + '*');
