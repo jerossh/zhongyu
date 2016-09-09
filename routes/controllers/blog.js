@@ -145,13 +145,19 @@ exports.removeBlog = function(req, res) {
 
 // 前端页面
 exports.blog = function(req, res) {
+  var _categories
   var _blogs
   var perCount = 2
   console.log(req.query.p);
   var page = parseInt(req.query.p, 10) || 0
   var skip = page * perCount || 0
 
-  if (page){
+  Category.find(function(err, categories) {
+    if (err) console.error(err);
+    _categories = categories;
+  })
+
+  // if (page){
     Blog.find().populate({
       path: "category",
       select: "name"
@@ -162,32 +168,33 @@ exports.blog = function(req, res) {
           title: "新闻页面",
           totalPage: Math.ceil(count / perCount),
           blogs: _blogs,
-          currentPage: (page + 1)
+          currentPage: (page + 1),
+          categories: _categories,
         })
       })
 
     })
-  } else {
-    Blog.find().populate({
-      path: "category",
-      select: "name"
-    }).limit(perCount).exec(function(err, blogsData){
-      if(err) console.error(err);
-      _blogs = blogsData
-
-      Blog.count(function(err, count) {
-        if(err) console.error(err);
-
-        res.render('blog', {
-          title: "新闻页面",
-          totalPage: Math.ceil(count / perCount),
-          blogs: _blogs,
-          currentPage: (page + 1)
-        })
-      })
-
-    })
-  }
+  // } else {
+  //   Blog.find().populate({
+  //     path: "category",
+  //     select: "name"
+  //   }).limit(perCount).exec(function(err, blogsData){
+  //     if(err) console.error(err);
+  //     _blogs = blogsData
+  //
+  //     Blog.count(function(err, count) {
+  //       if(err) console.error(err);
+  //
+  //       res.render('blog', {
+  //         title: "新闻页面",
+  //         totalPage: Math.ceil(count / perCount),
+  //         blogs: _blogs,
+  //         currentPage: (page + 1)
+  //       })
+  //     })
+  //
+  //   })
+  // }
 }
 exports.article = function(req, res) {
   var id = req.query.id

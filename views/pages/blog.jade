@@ -42,18 +42,13 @@ block content
   
       .col-md-3.blog-right
         .categories
-          h2 Categories
+          h2 资讯类别
           ul
-            li
-              a(href='#') Aenean tortor orci
-            li
-              a(href='#') Duis bibendum pellentesquev
-            li
-              a(href='#') Quisque pharetra semper
-            li
-              a(href='#') Cras condimentum risus
-            li
-              a(href='#')  Quisque id erat sapien
+            each item in categories
+              li
+                a(href='#') #{item.name}
+
+
         //- .categories
         //-   h3 Recent Posts
         //-   ul
