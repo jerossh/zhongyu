@@ -29,7 +29,6 @@ exports.new = function(req, res) {
         Blog.findOne({_id: id}, function(err, blogData) {
           if (err) console.error(err);
           blog = blogData
-          console.log("这是blog" + blogData);
           res.render('admin-blog', {
             title: '新闻资讯',
             blogs: blogs,
@@ -88,7 +87,6 @@ exports.saveBlog = function(req, res) {
   var blogObj = req.body.blog
   var localPath
   var _blog
-  console.log("开始保存博客内容");
 
   if (req.img) {
     localPath = path.join('/upload/', req.img)
@@ -116,10 +114,7 @@ exports.saveBlog = function(req, res) {
       if (categoryId) {
         Category.findOne({_id: categoryId}, function(err, category) {
           category.blogs.push(blog._id)
-          console.log("这是category: " + category);
-
           category.save(function(err, category) {
-            console.log("done");
           })
         })
       }
@@ -130,7 +125,6 @@ exports.saveBlog = function(req, res) {
 
 exports.removeBlog = function(req, res) {
   var id = req.query.id
-  console.log("到这里了？");
   Blog.remove({_id: id}, function(err, okInfo) {
     if (err) {
       console.log(err);
@@ -147,7 +141,7 @@ exports.removeBlog = function(req, res) {
 exports.blog = function(req, res) {
   var _categories
   var _blogs
-  var perCount = 2
+  var perCount = 5
   console.log(req.query.p);
   var page = parseInt(req.query.p, 10) || 0
   var skip = page * perCount || 0
@@ -198,8 +192,13 @@ exports.blog = function(req, res) {
 }
 exports.article = function(req, res) {
   var id = req.query.id
-
   var _blogs
+  var _categories
+
+  Category.find({}, function(err, data) {
+    _categories = data;
+  })
+
   Blog.findOne({_id: id}).populate({
     path: "category",
     select: "name"
@@ -207,7 +206,8 @@ exports.article = function(req, res) {
     _blog = blogData
     res.render('article', {
       title: "新闻页面",
-      blog: _blog
+      blog: _blog,
+      categories: _categories,
     })
   })
 }

@@ -6,7 +6,10 @@
 
     // 当前导航背景
     $(".menu .navbar-nav > li > a[href='" + pathname + "']" ).parent().addClass('active');
+    if(pathname == '/blog' || pathname == '/article')
+      $('.menu .navbar-nav > li > a[href="/blog?p=0"]' ).parent().addClass('active');
 
+    // 公司核名
     $('a[data-target="#signinModal"]').click(function(){
       var $q = $('.heming_content').val();
       var warn = $('.alert-warning');
