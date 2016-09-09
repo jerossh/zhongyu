@@ -31,7 +31,7 @@ exports.new = function(req, res) {
           blog = blogData
           console.log("这是blog" + blogData);
           res.render('admin-business', {
-            title: '新闻资讯',
+            title: '业务模块',
             blogs: blogs,
             categories: categories,
             blog: blog || {}
@@ -39,7 +39,7 @@ exports.new = function(req, res) {
         })
       } else{
         res.render('admin-business', {
-          title: '新闻资讯',
+          title: '业务模块',
           blogs: blogs,
           categories: categories,
           blog: {}
@@ -115,7 +115,8 @@ exports.saveBlog = function(req, res) {
 
       if (categoryId) {
         Category.findOne({_id: categoryId}, function(err, category) {
-          category.blogs.push(blog._id)
+          console.log(category, '这里');
+          category.business.push(blog._id)
           console.log("这是category: " + category);
 
           category.save(function(err, category) {
@@ -123,7 +124,7 @@ exports.saveBlog = function(req, res) {
           })
         })
       }
-      res.redirect('/admin/blog')
+      res.redirect('/admin/business')
     })
   }
 }

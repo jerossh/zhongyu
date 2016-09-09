@@ -6,31 +6,31 @@ block content
         #panel-wrap
           .panel
             .panel-heading
-              span.panel-title 新闻添加
+              span.panel-title 业务添加
             .panel-body
               .chute-bin
                 .filter-error-message.text-center
                   span  获取图片错误，请检查服务器是否设置正确
                 .portlet-body.form
-                  form.form-horizontal(action="/admin/blog", method="post", enctype="multipart/form-data", role='form')
+                  form.form-horizontal(action="/admin/business", method="post", enctype="multipart/form-data", role='form')
                     .form-body
                       if blog._id
                         input.form-control(type="hidden", name="blog[_id]", value=blog._id)
                       .form-group 
-                        label.col-md-2.control-label(for="title") 文章标题
+                        label.col-md-2.control-label(for="title") 业务名称
                         .col-md-10
                           input.form-control(type="text", placeholder="输入标题，10个字左右", name="blog[title]", value=blog.title)
                       .form-group 
-                        label.col-md-2.control-label(for="article") 文章内容
+                        label.col-md-2.control-label(for="article") 业务内容
                         .col-md-10
                           textarea.form-control(rows="10", placeholder="输入内容，300字左右",name="blog[article]") #{blog.article}
                       .form-group 
-                        label.col-md-2.control-label(for="intro") 文章简介
+                        label.col-md-2.control-label(for="intro") 业务简介
                         .col-md-10
                           textarea.form-control(rows="2", placeholder="输入简介，30个字左右", name="blog[intro]") #{blog.intro}
                     
                       .form-group
-                        label.col-md-2.control-label(for="category") 文章分类
+                        label.col-md-2.control-label(for="category") 业务分类
                         .col-md-10
                           if categories
                             .mt-checkbox-inline
@@ -44,7 +44,7 @@ block content
                           else
                             input.form-control(type="text", placeholder="输入分类，4个字左右", name="blog[categoryName]")
                       .form-group
-                        label.col-md-2.control-label(for="blogImg") 文章图片
+                        label.col-md-2.control-label(for="blogImg") 业务图片
                         .col-md-10
                           input#blogfile(type="file", name="blogImg")
                         if blog.img
@@ -61,7 +61,7 @@ block content
         #panel-wrap
           .panel
             .panel-heading
-              span.panel-title 管理新闻
+              span.panel-title 业务管理
             .panel-body
               .chute-bin
                 .filter-error-message.text-center
