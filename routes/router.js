@@ -3,8 +3,12 @@ var Slide = require('./controllers/slide');
 var User = require('./controllers/user');
 var Admin = require('./controllers/admin');
 var Blog = require('./controllers/blog');
-var Client = require('./controllers/client');
 var Category = require('./controllers/category');
+var Business = require('./controllers/business');
+var Bsnz_category = require('./controllers/bsnz_category');
+var Client = require('./controllers/client');
+
+
 var fs = require('fs')
 var path = require('path')
 
@@ -47,6 +51,16 @@ module.exports = function(app){
   app.get('/admin/category', User.userRequire, Category.new)
   app.post('/admin/category', User.userRequire, Category.saveCategory)
   app.delete('/admin/category', User.userRequire, Category.removeCategory)
+
+  // 业务模块
+  app.get('/admin/business', User.userRequire, Business.new)
+  app.post('/admin/business', User.userRequire, Business.saveBlogImg, Business.saveBlog)
+  app.delete('/admin/business', User.userRequire, Business.removeBlog)
+
+  // 业务分类
+  app.get('/admin/bsnz_category', User.userRequire, Bsnz_category.new)
+  app.post('/admin/bsnz_category', User.userRequire, Bsnz_category.saveCategory)
+  app.delete('/admin/bsnz_category', User.userRequire, Bsnz_category.removeCategory)
 
   // 新客户核名
   app.post('/admin/client', Client.saveClient)
