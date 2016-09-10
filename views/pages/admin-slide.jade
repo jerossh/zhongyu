@@ -26,13 +26,13 @@ block content
                     .form-group
                       label.col-md-2.control-label(for='inputfile') 图片：
                       .col-md-10
+                    
+                        input#inputfile(type='file', name="uploadImg")
+                        p.help-block 图片格式为jpg格式，分辨率1920*500
                         if slide.img
                           .col-md-3
                             img.img-responsive(src=slide.img)
                             input.hidden.form-control(type='hidden', name="slide[img]", value=slide.img) 
-                        else
-                          input#inputfile(type='file', name="uploadImg")
-                          p.help-block 图片格式为jpg格式，分辨率1920*500
                     //- .form-group
                     //-   .col-md-offset-2.col-md-10
                     //-     .checkbox
@@ -42,7 +42,7 @@ block content
                     .form-actions
                       .col-md-offset-2.col-md-10
                         button.btn.green(type='submit') 
-                          span 添加
+                          span 提交
                           span(style='display: none;') 正在添加...
       .row#slide-manage.basic-gallery
         .col-md-12

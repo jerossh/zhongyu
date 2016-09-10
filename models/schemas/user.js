@@ -1,5 +1,5 @@
-// db.users.insert({name: 'zhongyu',
-//     password: '10704a3385a6493adb338cc2fbb5c8f7',     // lb1988
+// db.users.insert({name: 'test',
+//     password: 'db3f830fb9361a1dbdc1a61a83581ebb',
 //     code: '001',
 // })
 

@@ -37,6 +37,7 @@ module.exports = function(app){
   app.get('/admin', User.userRequire, Admin.adminPanel)
 
 
+  // 幻灯片管理
   app.get('/admin/slide', User.userRequire, Slide.new, Slide.change)
   app.post('/admin/newslide',User.userRequire, Slide.saveUploadImg, Slide.saveSlide);
   app.delete('/admin/slide',User.userRequire, Slide.removeSlide)

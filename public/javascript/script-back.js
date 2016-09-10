@@ -5,6 +5,7 @@
     // 地址栏变量放在这里
     var pathname = location.pathname
     var hash = location.hash
+    var local_search = location.search
 
     // 登陆页
     // 登录页面用户名不存在事件
@@ -64,11 +65,18 @@
     $('button[type="submit"]').on('submit', function() {
       $(this).prop("disabled", true)
     })
+    // 修改功能界面文字
+    if (local_search) {
+      
+    }
+
+
+
 
     // 表格内事件委托
     var arr = ['del', 'change', 'view_blog']
     // 这里开始委托
-    $('table').on('click', 'button', function(e) {
+    $('.chute-bin').on('click', 'button', function(e) {
       var that = this
       arr.forEach(function(val){
         console.log(val);
