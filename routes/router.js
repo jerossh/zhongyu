@@ -73,10 +73,11 @@ module.exports = function(app){
   app.get('/admin/rsslist', User.userRequire, Client.rssList)
   app.delete('/admin/rsslist', User.userRequire, Client.removeRss)
 
+  // 多媒体图片管理
   app.get('/admin/images', User.userRequire, Admin.getImg)
   app.delete('/admin/images', User.userRequire, Admin.deleteImg)
 
-
+  // 用户管理
   app.get('/admin/user',User.userRequire, function(req, res) {
     res.render('admin-user', {title: '用户系统'})
   })

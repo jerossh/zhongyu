@@ -1,13 +1,16 @@
 const fs = require('fs');
+const path = require('path');
 
 exports.adminPanel = function(req, res) {
   res.render('admin', {title: '后台管理'})
 }
 
 exports.getImg = function(req, res) {
-    var path = __dirname + "../../../public/upload"
+    // var path = __dirname + "../../../public/upload"    // 要node 6.5才有效
+    var path2 = path.join(__dirname, "../../public/upload")
     console.log("查看 /tmp 目录");
-    fs.readdir(path ,function(err, files){
+
+    fs.readdir(path2 ,function(err, files){
        if (err) {
            return console.error(err);
        }
