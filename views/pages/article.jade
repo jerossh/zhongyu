@@ -69,23 +69,26 @@ block content
                             a(href='#')
                               i.fa.fa-reply
                               | reply
-              li.comment-wrap
-                .comment-thumb
-                  img.img-responsive(src='/images/t1.jpg', alt='')
-                .comment-body
-                  a.comment-author(rel='external nofollow', href='#') john smith
-                  .comment-content
-                    p
-                      | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus.
-                  header.comment-meta
-                    ul.post-meta
-                      li
-                        i.fa.fa-clock-o
-                        | 25 dec, 2016
-                      li
-                        a(href='#')
-                          i.fa.fa-reply
-                          | reply
+          form.row.form1(method='POST', action="/comment")
+            .col-md-6
+              .form-group
+                label
+                  | 怎么称呼
+                  i.fa.fa-asterisk
+                input.form-control(name='client[name]', type='text')
+            .col-md-6
+              .form-group
+                label
+                  | 您的电话
+                  i.fa.fa-asterisk
+                input.form-control(name='client[tel]', type='tel')
+            .col-md-12
+              .form-group
+                label 有什么疑问呢，在这里写下来
+                textarea.form-control(name='client[query]', rows='6')
+              .send_result
+            .col-md-12
+                input.btn.btn-primary.btn-lg.btn-block(value='提交', name='submit', type='submit')
                 .clearfix
           
         //-   .related.heading
@@ -122,6 +125,10 @@ block content
               each item in blogs
                 li
                   a(href='#') #{item.title}
+          .categories.white-bg 
+            h2 我们推荐
+            .ad
+              img.img-responsive(src="/images/t3.jpg")
           //-     li
           //-       a(href='#') Phasellus condimentum odio
           //-     li
