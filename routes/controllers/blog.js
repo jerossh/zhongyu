@@ -12,8 +12,8 @@ exports.new = function(req, res) {
   var id = req.query.id
 
   Blog.find().populate({
-    path: "category",
-    select: "name"
+    path: 'category',
+    select: 'name'
   }).exec(function(err, blogsData) {
     if (err) console.error(err);
     blogs = blogsData

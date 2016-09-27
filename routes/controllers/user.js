@@ -25,14 +25,16 @@ exports.login = function(req, res) {
     } else {
       user = JSON.stringify(user)
       user = JSON.parse(user)
-      console.log(user.password);
-      var _password = "";
+      // console.log(user.password);
+
+      var _password = '';
       _password += user.password
       _password = decipher.update(_password, 'hex', 'utf8');
       _password += decipher.final('utf8');
-      console.log(_password);
 
-      if (_password = password){
+      // console.log(_password);
+
+      if (_password === password){
         req.session.user = user
         console.log('Password is matched');
         return res.redirect('/admin')
