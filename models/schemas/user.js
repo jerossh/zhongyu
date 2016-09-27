@@ -4,14 +4,26 @@
 // })
 
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema
-var ObjectId = Schema.Types.ObjectId
+var Schema = mongoose.Schema;
+var ObjectId = Schema.Types.ObjectId;
 
 
 var UserSchema = new Schema({
-  name: String,
+  name: {
+    unique: true,
+    type: String
+  },
   password: String,
-  code: Number
-})
+  role: {
+    type: Number,
+    default: 0
+  },
+  meta: {
+    createAt: {
+      type: Date,
+      default: Date.now()
+    }
+  }
+});
 
-module.exports = UserSchema
+module.exports = UserSchema;
