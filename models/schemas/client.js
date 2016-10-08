@@ -5,6 +5,8 @@ var ObjectId = Schema.Types.ObjectId;
 var ClientSchema = new Schema({
   query: String,
   tel: Number,
+  money: Number,
+  add: String,
   name: String,
   createAt:{
     type: Date,
