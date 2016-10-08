@@ -4,11 +4,10 @@ var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var mongoose = require('mongoose');
-var mongoStore = require('connect-mongodb')     // 用于本地 session
+var MongoStore = require('connect-mongodb')     // 用于本地 session
 var logger = require('morgan');                  // HTTP request logger middleware for node.js
 var multipart = require('connect-multiparty');
 var app = express();
-
 
 //for the offline storage
 var session = require('express-session')
@@ -20,12 +19,11 @@ var dburl = 'mongodb://localhost/zhongyukuaiji'
 // db.on('error', console.error.bind(console,'连接错误:'));    报错，not a function
 
 // program config
+// app.set('port', process.env.PORT || 3000);
 app.set('views', './views/pages');
 app.set('view engine', 'jade');
 app.use(express.static('public'))
 app.use(favicon(__dirname + '/public/images/favicon.png'));
-
-
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -36,12 +34,11 @@ app.use(session({               //用来本地存储信息 store 对象
   secret: 'imoocj',
   resave:false,
   saveUninitialized:true,
-  store: new mongoStore({
+  store: new MongoStore({
     url: dburl,
     collection: 'sessions'      // 这条不懂，为什么是sessions是
   })
 }))
-
 
 app.locals.moment = require('moment')
 
@@ -56,5 +53,7 @@ if ('development' === app.get('env')){              // 如果是开发环境
 // app.use('/', routes);
 // app.use('/users', users);
 require('./routes/router')(app);
+
+app.listen(app.get('port'))
 
 module.exports = app;
