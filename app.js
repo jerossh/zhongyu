@@ -9,6 +9,8 @@ var logger = require('morgan');                  // HTTP request logger middlewa
 var multipart = require('connect-multiparty');
 var app = express();
 
+var debug = require('debug')('kapu');
+
 //for the offline storage
 var session = require('express-session')
 var cookieParser = require('cookie-parser')
@@ -19,7 +21,6 @@ var dburl = 'mongodb://localhost/zhongyukuaiji'
 // db.on('error', console.error.bind(console,'连接错误:'));    报错，not a function
 
 // program config
-// app.set('port', process.env.PORT || 3000);
 app.set('views', './views/pages');
 app.set('view engine', 'jade');
 app.use(express.static('public'))
@@ -54,6 +55,10 @@ if ('development' === app.get('env')){              // 如果是开发环境
 // app.use('/users', users);
 require('./routes/router')(app);
 
-app.listen(app.get('port'))
 
-module.exports = app;
+// 最后启动程序
+app.set('port', process.env.PORT || 3000);                                      // 设置端口号
+
+var server = app.listen(app.get('port'), function() {
+  debug('网站程序已启动，端口： ' + server.address().port);
+});
