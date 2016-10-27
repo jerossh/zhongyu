@@ -79,12 +79,13 @@ module.exports = function(app){
 
   // 用户管理
   app.get('/admin/user', function(req, res) {
+    var user = req.session.user
     res.render('admin-user', {
       title: '用户系统',
-      user: {}
+      user: user
     })
   })
-  app.post('/admin/usersubmit', User.userSubmit)
+  app.post('/admin/usersubmit', User.userRequire, User.userSubmit)
 
   //
   // // 处理url错误的请求，要放在 路由后面

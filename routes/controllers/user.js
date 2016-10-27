@@ -3,9 +3,9 @@ const User = require('../../models/user');
 // const decipher = crypto.createDecipher('aes192', 'a password');
 const bcrypt = require('bcrypt');
 
-const saltRounds = 10;
-const myPlaintextPassword = 's0/\/\P4$$w0rD';
-const someOtherPlaintextPassword = 'not_bacon';
+// const saltRounds = 10;
+// const myPlaintextPassword = 's0/\/\P4$$w0rD';
+// const someOtherPlaintextPassword = 'not_bacon';
 
 
 
@@ -24,10 +24,6 @@ exports.login = function(req, res) {
   var name = _user.name
   var password = _user.password
 
-  // 这里
-  bcrypt.compare(myPlaintextPassword, 'hash1', function(err, res) {
-      // res == true
-  });
 
   User.findOne({name: name}, function(err, user) {
     if (err) console.error(err);
@@ -35,35 +31,37 @@ exports.login = function(req, res) {
     if (!user) {
       res.redirect('/login#err')
     } else {
-      user = JSON.stringify(user)
-      user = JSON.parse(user)
-      console.log(password);
-
-      var _password = '';
-
-      _password += user.password
-      console.log(_password);
-      var type = typeof _password
-      console.log(type);
+      // user = JSON.stringify(user)
+      // user = JSON.parse(user)
+      // var _password = '';
+      // _password += user.password
       // _password = decipher.update(_password, 'hex', 'utf8');
       // _password += decipher.final('utf8');
-      // console.log('倒立着');
-      // console.log(_password);
+      console.log(1);
+      user.comparePassword(password, function(err, isMatch) {
+        console.log(4);
+           if (err) {
+             console.log(err)
+           }
+          console.log(5);
+           if (isMatch) {
+             req.session.user = user
+             console.log('Password is matched');
+             return res.redirect('/admin')
+           }
+           else {
+             return res.redirect('/signin')
+           }
+         })
 
-      if (_password === password){
-        req.session.user = user
-        console.log('Password is matched');
-        return res.redirect('/admin')
-      }
     }
   })
 }
 
 exports.logout = function (req, res) {
   delete req.session.user
-  res.redirect('/')
+  res.redirect('/login')
 }
-
 
 exports.userSubmit = function (req, res) {
   const user = req.body.user;
