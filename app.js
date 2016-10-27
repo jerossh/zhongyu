@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var mongoose = require('mongoose');
-var MongoStore = require('connect-mongodb')     // 用于本地 session
+
 var logger = require('morgan');                  // HTTP request logger middleware for node.js
 var multipart = require('connect-multiparty');
 var app = express();
@@ -13,6 +13,7 @@ var debug = require('debug')('kapu');
 
 //for the offline storage
 var session = require('express-session')
+var MongoStore = require('connect-mongo')(session)     // 用于本地 session
 var cookieParser = require('cookie-parser')
 var dburl = 'mongodb://localhost/zhongyukuaiji'
 
@@ -32,9 +33,7 @@ app.use(multipart())
 
 app.use(cookieParser())         //session 依赖的中间件  存储sessionid
 app.use(session({               //用来本地存储信息 store 对象
-  secret: 'imoocj',
-  resave:false,
-  saveUninitialized:true,
+  secret: 'linbin',
   store: new MongoStore({
     url: dburl,
     collection: 'sessions'      // 这条不懂，为什么是sessions是
