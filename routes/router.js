@@ -78,9 +78,13 @@ module.exports = function(app){
   app.delete('/admin/images', User.userRequire, Admin.deleteImg)
 
   // 用户管理
-  app.get('/admin/user',User.userRequire, function(req, res) {
-    res.render('admin-user', {title: '用户系统'})
+  app.get('/admin/user', function(req, res) {
+    res.render('admin-user', {
+      title: '用户系统',
+      user: {}
+    })
   })
+  app.post('/admin/usersubmit', User.userSubmit)
 
   //
   // // 处理url错误的请求，要放在 路由后面

@@ -1,26 +1,60 @@
 extends ../include/admin-header
 block content
-    .container
-      .row#slide-upload
-        .col-md-12
-          #panel-wrap
-            .panel
-              .panel-heading
-                span.panel-title 用户管理
-              .panel-body
-                .chute-bin(style='min-height: 250px;')
-                  | 用户系统，仅限管理员使用
-      
-
-
-                
-                  
-                
-        
-
-            
-          
-      
-    
-    
-    
+  .container
+    .row
+      .col-md-12
+        #panel-wrap
+          .panel
+            .panel-heading
+              span.panel-title 用户密码
+            .panel-body
+              .chute-bin
+                .filter-error-message.text-center
+                  span  获取用户信息错误，请检查服务器是否设置正确
+                .portlet-body.form
+                  form.form-horizontal(method="post", action="/admin/usersubmit")
+                    if user._id
+                      input(type="hidden", name="user[id]", value="#{user._id}")
+                    .form-group
+                      label.col-md-2.control-label(for="inputCategory")  用户名
+                      .col-md-10
+                        input#inputName.form-control(type="text", name="user[name]" value=user[name])
+                    .form-group
+                      label.col-md-2.control-label(for="inputCategory")  密码
+                      .col-md-10
+                        input#inputPass.form-control(type="text", name="user[password]")
+                    .form-group
+                      label.col-md-2.control-label(for="inputCategoryIntro") 密码确认
+                      .col-md-10
+                        input#inputPassConfirm.form-control(type="text")
+                    .form-group
+                      .col-md-offset-2.col-md-10
+                        button#userSubmit.btn.btn-primary(type="submit" disabled) 录入
+    //- .row
+    //-   .col-md-12
+    //-     #panel-wrap
+    //-       .panel
+    //-         .panel-heading
+    //-           span.panel-title 分类管理
+    //-         .panel-body
+    //-           .chute-bin
+    //-             .filter-error-message.text-center
+    //-               span  获取图片错误，请检查服务器是否设置正确
+    //-             .portlet-body.form
+    //-               table.table.table-hover.table-bordered
+    //-                 thead
+    //-                   tr
+    //-                     th 分类 
+    //-                     th 描述
+    //-                     th 创建时间
+    //-                     th 操作
+    //-                 tbody
+    //-                   if categories
+    //-                     each item in categories
+    //-                       tr(class="item-id-#{item._id}")
+    //-                         td #{item.name}
+    //-                         td #{item.intro}
+    //-                         td #{moment(item.meta.creatAt).format('MM/DD/YY')}
+    //-                         td
+    //-                           button.btn.btn-info.change(type="button", data-id="#{item._id}") 修改
+    //-                           button.btn.btn-danger.del(type="button", data-id="#{item._id}") 删除

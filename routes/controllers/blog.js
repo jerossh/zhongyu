@@ -153,13 +153,13 @@ exports.blog = function(req, res) {
 
   // if (page){
     Blog.find().populate({
-      path: "category",
-      select: "name"
+      path: 'category',
+      select: 'name'
     }).skip(skip).limit(perCount).exec(function(err, blogsData){
       _blogs = blogsData
       Blog.count(function(err, count) {
         res.render('blog', {
-          title: "新闻页面",
+          title: '新闻页面',
           totalPage: Math.ceil(count / perCount),
           blogs: _blogs,
           currentPage: (page + 1),
@@ -204,12 +204,12 @@ exports.article = function(req, res) {
   })
 
   Blog.findOne({_id: id}).populate({
-    path: "category",
-    select: "name"
+    path: 'category',
+    select: 'name'
   }).exec(function(err, blogData){
     _blog = blogData
     res.render('article', {
-      title: "新闻页面",
+      title: '新闻页面',
       blog: _blog,
       categories: _categories,
       blogs: _blogs,

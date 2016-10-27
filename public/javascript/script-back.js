@@ -3,17 +3,17 @@
 
     // 所有的内容都写在这里
     // 地址栏变量放在这里
-    var pathname = location.pathname
-    var hash = location.hash
-    var local_search = location.search
+    var pathname = location.pathname;
+    var hash = location.hash;
+    var local_search = location.search;
 
     // 登陆页
     // 登录页面用户名不存在事件
-    if (pathname == "/login")
-        if (hash == "#err") {
+    if (pathname === '/login')
+        if (hash === '#err') {
           $('.alert-danger').show();
-          $(".alert-danger .close").click(function() {
-            location.hash = ""
+          $('.alert-danger .close').click(function() {
+            location.hash = ''
           })
         }
     // 密码事件
@@ -26,7 +26,7 @@
       e.preventDefault();
       if(charCode >= 48 && charCode <= 122){
         inputPass.val(inputPass.val() + '*');
-        relPass.val(relPass.val()+String.fromCharCode(charCode))
+        relPass.val(relPass.val()+String.fromCharCode(charCode));
       }
     })
     //登陆页结束
@@ -63,17 +63,46 @@
     // 提交功能
 
     $('button[type="submit"]').on('submit', function() {
-      $(this).prop("disabled", true)
+      $(this).prop('disabled', true)
     })
     // 修改功能界面文字
-    if (local_search) {
-      
-    }
-
-
+    // if (local_search) {
+    //
+    // }
 
 
     // 表格内事件委托
+    // 删除功能
+    function del(e){
+      var target = $(e.target)
+      var id = target.data('id')
+      var item = $('.item-id-' + id.split('.')[0])
+      var delUrl = pathname + '?id='
+
+      $.ajax({
+        type: 'DELETE',
+        url: delUrl + id
+      }).done(function(result){
+        if (result.success === 1) {
+            if(item.length > 0) {
+              item.remove()
+            }
+        }
+      })
+    }
+
+    function change(e){
+      var target = $(e.target)
+      var id = target.data('id')
+      location.search = '?id=' + id
+    }
+
+    function view_blog(e) {
+      var target = $(e.target)
+      var id = target.data('id')
+      var url = '/blog/article' + '?id=' + id
+      window.open(url)
+    }
     var arr = ['del', 'change', 'view_blog']
     // 这里开始委托
     $('.chute-bin').on('click', 'button', function(e) {
@@ -98,40 +127,8 @@
       })
       $(this).hasClass('.change')
     })
-    // 删除功能
-    function del(e){
-      var target = $(e.target)
-      var id = target.data('id')
-      var item = $('.item-id-' + id.split('.')[0])
-      var delUrl = pathname + '?id='
 
-      $.ajax({
-        type: 'DELETE',
-        url: delUrl + id
-      }).done(function(result){
-        if (result.success == 1) {
-            if(item.length > 0) {
-              item.remove()
-            }
-        }
-      })
-    }
-
-    function change(e){
-      var target = $(e.target)
-      var id = target.data('id')
-      location.search = "?id=" + id
-    }
-
-    function view_blog(e) {
-      var target = $(e.target)
-      var id = target.data('id')
-      var url = "/blog/article" + "?id=" + id
-      window.open(url)
-    }
     // 表格内事件委托结束
-
-
 
     //   // 删除功能
     // $('.del').click(function(e) {
@@ -171,14 +168,22 @@
     // })
 
 
-
-
-
     // 博客类别点击显示，用 css 兄弟选择服解决了
     // $('.mt-checkbox>span').click(function(){
     //   $(this).parent().addClass('after')
     //   console.log('f');
     // })
+
+    // 密码相同
+    $('#inputPassConfirm').blur(function(){
+      var passw = $('#inputPass').val();
+      var passwc = $(this).val();
+      if (passwc.length === 0) return false;
+      if (passw === passwc) {
+        $('#userSubmit').attr('disabled', false)
+      }
+
+    })
 
 
   // js这里结束

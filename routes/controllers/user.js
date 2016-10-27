@@ -59,10 +59,22 @@ exports.login = function(req, res) {
   })
 }
 
-
 exports.logout = function (req, res) {
   delete req.session.user
   res.redirect('/')
+}
+
+
+exports.userSubmit = function (req, res) {
+  const user = req.body.user;
+  const _user = new User(user);
+
+  console.log('1');
+  _user.save(function(err, user) {
+    console.log(6);
+    if (err) console.error(err);
+    res.redirect('/admin/user')
+  })
 }
 
 exports.userRequire = function(req, res, next) {
