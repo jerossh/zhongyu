@@ -9,7 +9,7 @@ var logger = require('morgan');                  // HTTP request logger middlewa
 var multipart = require('connect-multiparty');
 var app = express();
 
-var debug = require('debug')('kapu');
+// var debug = require('debug')('kapu');
 
 //for the offline storage
 var session = require('express-session')
@@ -59,5 +59,5 @@ require('./routes/router')(app);
 app.set('port', process.env.PORT || 3000);                                      // 设置端口号
 
 var server = app.listen(app.get('port'), function() {
-  debug('网站程序已启动，端口： ' + server.address().port);
+  console.log('网站程序已启动，端口： ' + server.address().port);
 });
