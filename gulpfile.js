@@ -23,7 +23,7 @@ gulp.task('nodemon', function (cb) {
   var called = false;
 
   return nodemon({
-    script: 'bin/www'
+    script: 'app.js'
   }).on('start', function () {
     if (!called) {
       cb();

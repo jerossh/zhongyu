@@ -1,9 +1,0 @@
-#!/usr/bin/env node                                                             // 表明是 node 可执行文件
-var debug = require('debug')('kapu');                                           // 引入debug模块，打印调试日志
-var app = require('../app');                                                    // 引入我们上面导出的app实例。
-
-app.set('port', process.env.PORT || 3000);                                      // 设置端口号
-
-var server = app.listen(app.get('port'), function() {
-  debug('网站程序已启动，端口： ' + server.address().port);
-});
